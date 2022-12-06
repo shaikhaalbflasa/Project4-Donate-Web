@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reuser</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        select {
+            display: block;
+        }
+        .nav-wrapper {
+            background-color: gray;
+            color: black;
+        }
+        .page-footer{
+            background-color: gray;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar-fixed" >
+        <nav>
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="https://imgur.com/3ocMVm2"><img src="https://i.imgur.com/3ocMVm2.png"    width=15% /></a></li>
+                </ul>
+                <ul class="right">
+                    {% if user.profile.donor %}
+                    <li>I AM A DONOR</li>
+                    {% endif %}
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'Donate_create' %}">Add a Donate</a></li>
+                    <li><a href="{% url 'index' %}">View All My Donate</a></li>
+                      <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                      <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+                  </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+  	<footer class="page-footer">
+       <div class="right">All Rights Reserved, &copy; 2019 Reuser &nbsp;</div>
+    </footer>
+</body>
+</html>

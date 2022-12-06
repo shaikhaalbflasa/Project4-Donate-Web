@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Donate </h1>
+
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ Donate.item_name }}</span>
+            <p>Pick up date: {{ Donate.date }}</p>
+            <p>Pick up time: {{ Donate.time }}</p>
+            <p>Pick up location: {{ Donate.location }}</p>
+            <p>Number of item: {{ Donate.num }}</p>
+            <p>Type of item: {{ Donate.typeofDonate }}</p>
+
+        </div>
+        <div class="card-action">
+            <a href="{% url 'Donate_update' Donate.id %}">Edit</a>
+            <a href="{% url 'Donate_delete' Donate.id %}">Delete</a>
+          </div>
+    </div>
+
+
+{% endblock %}

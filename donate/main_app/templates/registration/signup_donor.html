@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Are you a Donor or Company ?</h1>
+
+<form action='/signup-donor/' method='POST'>
+    {% csrf_token %}
+    <!-- <input name= value="" --><label>Donor</label>
+    <input type="checkbox" id="donor" name="donor" value="True" class="single-checkbox">
+    <!-- <input type="radio" id="donor" name="donor" value="False"> -->
+    <label>Company</label>
+    <input type="checkbox" id="company" name="company" value="True" class="single-checkbox">
+    <!-- <input type="radio" id="company" name="company" value="False"> -->
+
+    <button type='submit'>Submit</button>
+</form>
+<script>
+var limit = 1;
+$('input.single-checkbox').on('change', function(evt) {
+   if($(this).siblings(':checked').length >= limit) {
+       this.checked = false;
+   }
+});
+</script>
+
+{% endblock %}
