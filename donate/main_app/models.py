@@ -8,24 +8,26 @@ class Profile(models.Model):
 
 # Create your models here.
 Type = (
-    ('P', 'Plastic'),
-    ('p', 'Paper'),
-    ('G', 'Glass Bottles'),
-    ('c', 'Containers')
+    ('Plastic','Plastic'),
+    ('Paper','Paper'),
+    ('Glass Bottles','Glass Bottles'),
+    ('Containers','Containers')
 ) 
 
 class Donate(models.Model):
     item_name = models.CharField('Name', max_length=100)
     #    date = models.DateField('Pick up date')
     # date = models.CharField('Pick up Date', max_length=100)
+    item_image = models.TextField('Item Image', max_length=350)
     date = models.DateField('Pick up Date', max_length=100)
     time = models.TimeField('Pick up Time', max_length=100)
     #    time = models.TimeField('Pick up time')
     location =  models.CharField('Pick up Location', max_length=100) 
     #    location =  models.SpatialLocationField() 
+    # status = models.CharField()
     num = models.IntegerField('Number', default=0)
     typeofDonate = models.CharField('Type',
-        max_length=1,
+        max_length=100,
         choices=Type,
         default=Type[0][0]
                                     )

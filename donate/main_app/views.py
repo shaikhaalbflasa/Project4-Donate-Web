@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 class DonateCreate(LoginRequiredMixin, CreateView):
   model = Donate
   # form fields below
-  fields = ['date', 'time', 'location', 'num', 'typeofDonate']
+  fields = ['item_image', 'date', 'time', 'location', 'num', 'typeofDonate']
   success_url='/Donate/'
 
 
@@ -22,7 +22,7 @@ class DonateCreate(LoginRequiredMixin, CreateView):
 
 class DonateUpdate(UpdateView):
   model = Donate
-  fields = ['date', 'time', 'location', 'num']
+  fields = ['item_image','date', 'time', 'location', 'num']
 
 class DonateDelete(DeleteView):
   model = Donate
@@ -67,7 +67,7 @@ def signup (request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('signup_donor')
     else:
       error_message = 'Invalid sign up , try again'
     
@@ -84,6 +84,11 @@ def Donate_detail(request, Donate_id):
   donate = Donate.objects.get(id=Donate_id)
  
   return render(request, 'Donate/detail.html', {'Donate': donate })
+
+def index_donate(request):
+  donate = Donate.objects.all()
+  return render(request, 'Donate/index.html', { 'Donate': donate})
+
 
 
 
