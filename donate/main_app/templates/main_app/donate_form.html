@@ -4,16 +4,10 @@
 {% if user.profile.donor %}
   {% if object %}
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+
   {% else %}
     <h1>Add Donation</h1>
   {% endif %}
-{% endif %}
-{% if user.profile.company %}
-    <a href='/'>
-        <button>
-        Collect
-        </button>
-    </a>
 {% endif %}
   
   <form action="" method="post">
@@ -24,6 +18,7 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+  <a href="{% url 'index_donate' %}"><button>Cancel</button></a>
 
   <script>
     // create a datepicker

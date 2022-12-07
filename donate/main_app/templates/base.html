@@ -9,11 +9,12 @@
     <title>Reuser</title>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
+     
+    <!-- <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
     <style>
         select {
             display: block;
@@ -33,7 +34,8 @@
         <nav>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="https://imgur.com/3ocMVm2"><img src="https://i.imgur.com/3ocMVm2.png"    width=15% /></a></li>
+                    <img src="https://i.imgur.com/3ocMVm2.png"   height="20%" width="5%" />
+                    
                 </ul>
                 <ul class="right">
 
@@ -47,8 +49,8 @@
                     {% endif %}
                     {% if user.profile.company %}
                     <li>Welcome Company {{ user.username }}</li>
-                    {% endif %}
                     <li><a href="{% url 'index_donate' %}">View All Donations</a></li>
+                    {% endif %}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
                     <li><a href="{% url 'home' %}">Home</a></li>

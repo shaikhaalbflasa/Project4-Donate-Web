@@ -7,12 +7,14 @@ from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
+# new function to change status of donation to unavailable
+
 #class based view -> They create form for you
 #This view handles both get and post requests
 class DonateCreate(LoginRequiredMixin, CreateView):
   model = Donate
   # form fields below
-  fields = ['item_image', 'date', 'time', 'location', 'num', 'typeofDonate']
+  fields = ['item_image', 'date', 'time', 'location', 'num', 'typeofDonate',]
   success_url='/Donate/'
 
 
@@ -22,7 +24,7 @@ class DonateCreate(LoginRequiredMixin, CreateView):
 
 class DonateUpdate(UpdateView):
   model = Donate
-  fields = ['item_image','date', 'time', 'location', 'num']
+  fields = ['item_image','date', 'time', 'location', 'num',]
 
 class DonateDelete(DeleteView):
   model = Donate

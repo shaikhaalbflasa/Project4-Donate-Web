@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,7 +25,7 @@ class Donate(models.Model):
     #    time = models.TimeField('Pick up time')
     location =  models.CharField('Pick up Location', max_length=100) 
     #    location =  models.SpatialLocationField() 
-    # status = models.CharField()
+    status = models.BooleanField('Availability',default = True)
     num = models.IntegerField('Number', default=0)
     typeofDonate = models.CharField('Type',
         max_length=100,
@@ -35,4 +36,5 @@ class Donate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.item_name
-
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'Donate_id': self.id})
