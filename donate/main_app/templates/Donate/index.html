@@ -15,6 +15,11 @@
             <p>Pick up location: {{ Donate.location }}</p>
             <p>Number of item: {{ Donate.num }}</p>
             <p>Type of item: {{ Donate.typeofDonate }}</p>
+            {% for photo in Donate.photo_set.all %}
+            <img class="responsive-img card-panel" src="{{photo.url}}">
+          {% empty %}
+            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+          {% endfor %}
 
         </div>
     </div>
@@ -31,12 +36,21 @@
       <p>Number of item: {{ Donate.num }}</p>
       <p>Type of item: {{ Donate.typeofDonate }}</p>
       <p>Availability: {{ Donate.status }}</p>
+  
       {% if user.profile.company %}
-      <a href="{% url 'donate_collect' Donate.id %}">
-          <button>
+      {% if Donate.status == True %}
+      <a href="{% url 'donate_collect' Donate.id %}" style="background-color:blue ;"> 
+       
+          <button type="button" onclick="donate_collect()">
           Collect
           </button>
       </a>
+      {% else %}
+      <button  style="background-color:grey ;">
+      
+        Collected
+        </button>
+      {% endif %}
   {% endif %}
   </div>
 </div>

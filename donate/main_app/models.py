@@ -25,7 +25,7 @@ class Donate(models.Model):
     #    time = models.TimeField('Pick up time')
     location =  models.CharField('Pick up Location', max_length=100) 
     #    location =  models.SpatialLocationField() 
-    status = models.BooleanField('Availability',default = True)
+    status = models.BooleanField('Availability', default = True)
     num = models.IntegerField('Number', default=0)
     typeofDonate = models.CharField('Type',
         max_length=100,
@@ -38,3 +38,11 @@ class Donate(models.Model):
         return self.item_name
     def get_absolute_url(self):
         return reverse('detail', kwargs={'Donate_id': self.id})
+
+
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  Donate = models.ForeignKey(Donate, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for Donate_id: {self.Donate_id} @{self.url}"

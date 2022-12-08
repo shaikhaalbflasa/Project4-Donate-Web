@@ -4,4 +4,5 @@ from .models import *
 # Register your models here.
 admin.site.register(Donate)
 admin.site.register(Profile)
+admin.site.register(Photo)
 

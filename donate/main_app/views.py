@@ -40,6 +40,10 @@ def home(request):
 def index(request):
   return render(request, 'index.html')
 
+def contactus(request):
+  return render(request, 'contactus.html')
+
+
 def signup_donor(request):
   # u = request.user.profile.first()
   p = Profile.objects.filter(user_id=request.user.id)
@@ -91,8 +95,30 @@ def index_donate(request):
   donate = Donate.objects.all()
   return render(request, 'Donate/index.html', { 'Donate': donate})
 
+def donate_collect(request, pk):
+  d = Donate.objects.get(id=pk)
+  d.status = False
+  d.save()
+  return redirect('index_donate')
 
-
+def add_photo(request, cat_id):
+	# photo-file was the "name" attribute on the <input type="file">
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    # need a unique "key" for S3 / needs image file extension too
+    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+    # just in case something goes wrong
+    try:
+      s3.upload_fileobj(photo_file, BUCKET, key)
+      # build the full url string
+      url = f"{S3_BASE_URL}{BUCKET}/{key}"
+      # we can assign to cat_id or cat (if you have a cat object)
+      photo = Photo(url=url, Donate_id=Donate_id)
+      photo.save()
+    except:
+      print('An error occurred uploading file to S3')
+  return redirect('detail', Donate_id=Donate_id)
 
 # u = User.objects.get(id=request.user.id)
 # u.profile.donor
